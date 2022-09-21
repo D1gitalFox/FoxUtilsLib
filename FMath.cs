@@ -1,5 +1,8 @@
 ﻿namespace FoxUtilsLib
 {
+    /// <summary>
+    /// Simple math functions
+    /// </summary>
     public static class FMath
     {
         /// <summary>
