@@ -35,7 +35,7 @@
                 {
                     Console.Write($"[{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"[CRIT ] ");
+                    Console.Write($"[CRIT ] ");
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
@@ -56,7 +56,7 @@
                 {
                     Console.Write($"[{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"[Error] ");
+                    Console.Write($"[Error] ");
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
@@ -77,7 +77,7 @@
                 {
                     Console.Write($"[{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"[Warn ] ");
+                    Console.Write($"[Warn ] ");
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
@@ -97,7 +97,7 @@
                 {
                     Console.Write($"[{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"[Info ] ");
+                    Console.Write($"[Info ] ");
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
@@ -114,7 +114,7 @@
                 {
                     Console.Write($"[{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                    Console.WriteLine($"[Debug] ");
+                    Console.Write($"[Debug] ");
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
