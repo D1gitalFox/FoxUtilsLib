@@ -9,6 +9,7 @@
         {
             public string AppName { get; }
             public LogLevel MinimalLogLevel { get; set; }
+            public string DateTimeFormat { get; }
             internal static object _MessageLock = new();
 
             /// <summary>
@@ -16,12 +17,15 @@
             /// </summary>
             /// <param name="appName">App label shown in every log message</param>
             /// <param name="minimalLogLevel">All logs below this level won't be shown</param>
-            public FLogger(string appName, LogLevel minimalLogLevel = LogLevel.Information)
+            /// <param name="dateTimeFormat">Date and time format to be shown in logs</param>
+            public FLogger(string appName, LogLevel minimalLogLevel = LogLevel.Information, string dateTimeFormat = "dd.MM.yyyy HH:mm:ss.fff")
             {
                 if (string.IsNullOrWhiteSpace(appName))
                     throw new ArgumentNullException(nameof(appName));
+                DateTime.Now.ToString(dateTimeFormat);
                 AppName = appName;
                 MinimalLogLevel = minimalLogLevel;
+                DateTimeFormat = dateTimeFormat;
             }
 
             /// <summary>
@@ -33,7 +37,7 @@
             {
                 lock (_MessageLock)
                 {
-                    Console.Write($"[{AppName}] ");
+                    Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"[CRIT ] ");
                     Console.ResetColor();
@@ -54,7 +58,7 @@
             {
                 lock (_MessageLock)
                 {
-                    Console.Write($"[{AppName}] ");
+                    Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.Write($"[Error] ");
                     Console.ResetColor();
@@ -75,7 +79,7 @@
             {
                 lock (_MessageLock)
                 {
-                    Console.Write($"[{AppName}] ");
+                    Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write($"[Warn ] ");
                     Console.ResetColor();
@@ -95,7 +99,7 @@
             {
                 lock (_MessageLock)
                 {
-                    Console.Write($"[{AppName}] ");
+                    Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write($"[Info ] ");
                     Console.ResetColor();
@@ -112,7 +116,7 @@
             {
                 lock (_MessageLock)
                 {
-                    Console.Write($"[{AppName}] ");
+                    Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.Write($"[Debug] ");
                     Console.ResetColor();
