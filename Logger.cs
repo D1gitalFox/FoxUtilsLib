@@ -56,6 +56,8 @@
             /// <param name="ex">Exception to show, if any</param>
             public void Error(string message, Exception? ex = null)
             {
+                if (MinimalLogLevel < LogLevel.Error)
+                    return;
                 lock (_MessageLock)
                 {
                     Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
@@ -77,6 +79,8 @@
             /// <param name="ex">Exception to show, if any</param>
             public void Warning(string message, Exception? ex = null)
             {
+                if (MinimalLogLevel < LogLevel.Warning)
+                    return;
                 lock (_MessageLock)
                 {
                     Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
@@ -97,6 +101,8 @@
             /// <param name="message">Message to be sent</param>
             public void Info(string message)
             {
+                if (MinimalLogLevel < LogLevel.Information)
+                    return;
                 lock (_MessageLock)
                 {
                     Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
@@ -114,6 +120,8 @@
             /// <param name="ex">Exception to show, if any</param>
             public void Debug(string message)
             {
+                if (MinimalLogLevel < LogLevel.Debug)
+                    return;
                 lock (_MessageLock)
                 {
                     Console.Write($"[{DateTime.Now.ToString(DateTimeFormat)}] [{AppName}] ");
