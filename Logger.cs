@@ -3,9 +3,9 @@
     namespace Logging
     {
         /// <summary>
-        /// Базовый логгер для вывода в консоль
+        /// Базовый логгер для вывода в консоль и файл
         /// </summary>
-        public class FLogger
+        public class FLogger : IEquatable<FLogger?>
         {
             /// <summary>
             /// Имя приложения, используемого для вывода в логах
@@ -31,6 +31,8 @@
             {
                 if (string.IsNullOrWhiteSpace(appName))
                     throw new ArgumentNullException(nameof(appName));
+                if(string.IsNullOrWhiteSpace(dateTimeFormat))
+                    throw new ArgumentNullException(nameof(dateTimeFormat));
                 DateTime.Now.ToString(dateTimeFormat);
                 AppName = appName;
                 MinimalLogLevel = minimalLogLevel;
@@ -138,6 +140,24 @@
                     Console.ResetColor();
                     Console.WriteLine($"{message}");
                 }
+            }
+
+            public override bool Equals(object? obj)
+            {
+                return Equals(obj as FLogger);
+            }
+
+            public bool Equals(FLogger? other)
+            {
+                return other is not null &&
+                       AppName == other.AppName &&
+                       MinimalLogLevel == other.MinimalLogLevel &&
+                       DateTimeFormat == other.DateTimeFormat;
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(AppName, MinimalLogLevel, DateTimeFormat);
             }
         }
 
