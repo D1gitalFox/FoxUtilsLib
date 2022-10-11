@@ -18,10 +18,10 @@
         ///   </para>
         ///  <paramref name="upper_limit"/>: если больше чем <paramref name="upper_limit"/>
         /// </returns>
-        public static T Constrain<T>(T value, T upper_limit, T lower_limit) where T : IComparable<T>
+        public static T Constrain<T>(T value, T lower_limit, T upper_limit) where T : IComparable<T>
         {
             // Лучше не использовать это для не-числовых типов лол
-            return value.CompareTo(upper_limit) > 0 ? upper_limit : (value.CompareTo(upper_limit) < 0 ? lower_limit : value);
+            return value.CompareTo(upper_limit) > 0 ? upper_limit : (value.CompareTo(lower_limit) < 0 ? lower_limit : value);
         }
 
         /// <summary>
