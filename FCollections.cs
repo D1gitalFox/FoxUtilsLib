@@ -28,9 +28,7 @@ namespace FoxUtilsLib
 
             public LuckList(List<KeyValuePair<T, int>> sequence)
             {
-                if (sequence == null) 
-                    throw new ArgumentNullException(nameof(sequence));
-                this.sequence = sequence;
+                this.sequence = sequence ?? throw new ArgumentNullException(nameof(sequence));
             }
 
             public LuckList(IEnumerable<KeyValuePair<T, int>> enumerable)
@@ -44,7 +42,7 @@ namespace FoxUtilsLib
             {
                 if (sequence == null)
                     throw new ArgumentNullException(nameof(sequence));
-                this.sequence = sequence;
+                this.sequence = sequence.sequence;
             }
 
             /// <summary>
