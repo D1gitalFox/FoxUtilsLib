@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoxUtilsLib
 {
-    public class FCollections
+    namespace FCollections
     {
         /// <summary>
         /// Словарь значений, в которой каждый элемент имеет свой вес. Может быть использован для имитации случайного выбора
