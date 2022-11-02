@@ -28,14 +28,23 @@ namespace FoxUtilsLib
 
             public LuckList(List<KeyValuePair<T, int>> sequence)
             {
+                if (sequence == null) 
+                    throw new ArgumentNullException(nameof(sequence));
                 this.sequence = sequence;
             }
 
             public LuckList(IEnumerable<KeyValuePair<T, int>> enumerable)
             {
-                if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
-                this.sequence.Clear();
+                if (enumerable == null) 
+                    throw new ArgumentNullException(nameof(enumerable));
                 this.sequence = new List<KeyValuePair<T, int>>(enumerable);
+            }
+
+            public LuckList(LuckList<T> sequence)
+            {
+                if (sequence == null)
+                    throw new ArgumentNullException(nameof(sequence));
+                this.sequence = sequence;
             }
 
             /// <summary>
