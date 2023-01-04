@@ -28,9 +28,7 @@
         /// </summary>
         public static string Truncate(string baseString, int length)
         {
-            if(baseString.Length > length)
-                return baseString.Substring(0, length);
-            return baseString;
+            return (baseString.Length > length ? baseString[..length] : baseString);
         }
     }
 }

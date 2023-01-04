@@ -142,19 +142,30 @@
                 }
             }
 
+            /// <summary>
+            /// Проверяет, равен ли текущий экземпляр <see cref="FLogger"/> с другим
+            /// </summary>
+            /// <param name="obj"></param>
+            /// <returns></returns>
             public override bool Equals(object? obj)
             {
-                return Equals(obj as FLogger);
-            }
-
-            public bool Equals(FLogger? other)
-            {
+                if (obj is null) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                if (obj.GetType() != GetType()) return false;
+                if (obj is not FLogger other) return false;
                 return other is not null &&
                        AppName == other.AppName &&
                        MinimalLogLevel == other.MinimalLogLevel &&
                        DateTimeFormat == other.DateTimeFormat;
             }
 
+            /// <inheritdoc cref="Equals(object?)"/>
+            public bool Equals(FLogger? other)
+            {
+                return Equals(other);
+            }
+
+            /// <inheritdoc cref="object.GetHashCode"/>
             public override int GetHashCode()
             {
                 return HashCode.Combine(AppName, MinimalLogLevel, DateTimeFormat);
@@ -166,10 +177,25 @@
         /// </summary>
         public enum LogLevel
         {
+            /// <summary>
+            /// Критическая ошибка, делающая продолжение работы невозможным
+            /// </summary>
             Critical,
+            /// <summary>
+            /// Ошибка
+            /// </summary>
             Error,
+            /// <summary>
+            /// Предупреждение
+            /// </summary>
             Warning,
+            /// <summary>
+            /// Информация
+            /// </summary>
             Information,
+            /// <summary>
+            /// Отладочаня информация, обычно не содержит нужных для пользователя данных
+            /// </summary>
             Debug,
         }
     }
